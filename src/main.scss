@@ -1,0 +1,14 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+.active{
+  background-color: $gray-200;
+  border-radius: 7px;
+}
+
+.heading{
+  font-weight: 900;
+}
+
+.dropdown{
+  z-index: $zindex-dropdown;
+}
