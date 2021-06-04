@@ -20,10 +20,10 @@ const Content = () => {
     : projectName = isProject(projects, selectedProject).name
 
   return (
-    <div className="col-8 container">
-      <div className="mt-4 ms-5 justify-content-center">
+    <div className="col-md-8 container">
+      <div className="mt-4 ms-md-5 ms-3 col-12 justify-content-center">
         <span className="fw-bolder fs-4">{projectName}</span>
-        <ul className="list-group list-group-flush mt-3 me-5">
+        <ul className="list-group list-group-flush mt-3 me-md-5 me-2">
         {tasks.map(task => (
           <Task id={task.docId} setTasks={settasks} archived={task.archived}>{task.task}</Task>
         ))}

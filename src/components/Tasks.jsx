@@ -51,8 +51,8 @@ const Task = ({children, id, archived}) => {
         )}
       </div>
       <div className="">
-      <div className="btn justify-content-end" onClick={() => setEditing(!editing)}><MdEdit/></div>
-      <div className="btn justify-content-end" onClick={() => deleteTask()}><MdDelete/></div>
+      <div className="btn p-1 pe-md-3 justify-content-end" onClick={() => setEditing(!editing)}><MdEdit/></div>
+      <div className="btn p-1 ps-md-3 justify-content-end" onClick={() => deleteTask()}><MdDelete/></div>
       </div>
     </li>
   )

@@ -5,10 +5,10 @@ import { isCollatedProject } from "../helpers";
 
 const useTasks = (selectedProject) => {
   const [tasks, settasks] = useState([]);
-  const currentUser = useContext(AuthContext)
+  const {email} = useContext(AuthContext)
 
   useEffect(() => {
-    let unsubscribe = firebase.firestore().collection('tasks').where('email','==',currentUser.email)
+    let unsubscribe = firebase.firestore().collection('tasks').where('email','==',email)
 
     unsubscribe = 
     selectedProject && !isCollatedProject(selectedProject)
@@ -29,21 +29,19 @@ const useTasks = (selectedProject) => {
       settasks(newTasks)
     })
     return () => unsubscribe()
-  }, [selectedProject]);
+  }, [selectedProject, email]);
   return { tasks, settasks };
 };
 
 const useProjects = () => {
   const [projects, setProjects] = useState([]);
-  const currentUser = useContext(AuthContext)
-  console.log('Projects Read')
+  const {email} = useContext(AuthContext)
 
   useEffect(() => {
     firebase
       .firestore()
       .collection("projects")
-      .where('email','==',currentUser.email)
-      // .orderBy("projectId")
+      .where('email','==',email)
       .get()
       .then((snapshot) => {
         const allProjects = snapshot.docs.map((doc) => ({
@@ -53,11 +51,10 @@ const useProjects = () => {
           docId: doc.id,
         }));
         if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
-          console.log(allProjects !== projects)
           setProjects(allProjects);
         }
       });
-  }, [projects]);
+  }, [projects, email]);
   return { projects, setProjects };
 };
 

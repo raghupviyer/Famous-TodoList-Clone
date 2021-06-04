@@ -1,8 +1,8 @@
-import {useContext, useEffect, useState} from 'react'
+import {useContext, useState} from 'react'
 import { Redirect, withRouter } from 'react-router';
 import { AuthContext } from '../../context/Auth';
 import {firebase} from '../../firebase'
-import image from '../../assets/screenshot.png'
+import { SiTodoist } from "react-icons/si";
 
 const Login = ({history}) => {
   const [isNewUser, setIsNewUser] = useState(false)
@@ -12,7 +12,6 @@ const Login = ({history}) => {
   const handleLogin = 
     async (e) => {
       e.preventDefault();
-      // const {email, password} = e.target.elements;
       try{
         isNewUser
         ?await firebase.auth().createUserWithEmailAndPassword(emailId, password)
@@ -25,24 +24,30 @@ const Login = ({history}) => {
     }
 
   return (
-    <div className="row">
+    <div className="row col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-10 col-11 mx-auto mt-5 card justify-self-center">
       {currentUser && <Redirect to="/"/>}
-      <div className="col">
-      <h1 className="">{isNewUser? "Sign Up": "LogIn"}</h1>
-      <form class="mt-3 mb-3">
-        <div class="">
-          <label for="inputEmail4" class="form-label">Email</label>
-          <input type="email" onChange={(e) => setEmailId(e.target.value)} value={emailId} class="form-control" id="inputEmail4"/>
+      <div className="card-body p-0">
+      <h4 className="card-header"><SiTodoist/><span className="ms-2">{isNewUser? "Sign Up": "LogIn"}</span></h4>
+      <div className="m-3">
+        <div className="mb-3">
+          <label for="inputEmail4" className="form-label">Email</label>
+          <input type="email" onChange={(e) => setEmailId(e.target.value)} value={emailId} className="form-control" id="inputEmail4"/>
         </div>
-        <div class="mb-3">
-          <label for="inputPassword4" class="form-label">Password</label>
-          <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} class="form-control" id="inputPassword4"/>
+        <div className="mb-3">
+          <label for="inputPassword4" className="form-label">Password</label>
+          <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} className="form-control" id="inputPassword4"/>
         </div>
-        <button className="btn btn-outline-primary" type="submit" onClick={handleLogin}>{isNewUser? "Sign Up": "LogIn"}</button>
-      </form>
-        <button className="btn btn-primary text-light" onClick={() => setIsNewUser(!isNewUser)}>{isNewUser? "Not New User": "New User?"}</button>
+        <div className="">
+          <button className="btn btn-outline-primary" type="submit" onClick={handleLogin}>{isNewUser? "Sign Up": "LogIn"}</button>
+          <button className="btn btn-primary text-light ms-4" onClick={() => setIsNewUser(!isNewUser)}>{isNewUser? "Not New User": "New User?"}</button>
+        </div>
+      </div>
+        <div className="card-footer m-0">
+          Test account: <br/>
+          email - test@test.com <br/>
+          password - testtest <br/>
+        </div>
     </div>
-    <img src={`${image}`} alt="screenshot" className="img-fluid col-9" />
     </div>
   )
 }

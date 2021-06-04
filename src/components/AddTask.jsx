@@ -31,15 +31,15 @@ const AddTask = ({projects, cancel}) => {
       <div className="card-body">
         <input type="text" className="form-control mb-3" placeholder="Enter your task ..." value={taskName} onChange={(e) => setTaskName(e.target.value)}/>
         <div className="row">
-          <div className="col-3">
+          <div className="col-lg-3 col-6">
             <select className="form-select" id="autoSizingSelect" value={date} onChange={(e) => setDate(e.target.value)} placeholder="Schedule">
               <option value="">Schedule</option>
               <option value="today">Today</option>
               <option value="upcoming">UpComing</option>
             </select>
           </div>
-          <div className="col-3">
-            <select className="form-select col-3" id="autoSizingSelect" value={project} onChange={(e) => setProject(e.target.value)}>
+          <div className="col-lg-3 col-6">
+            <select className="form-select" id="autoSizingSelect" value={project} onChange={(e) => setProject(e.target.value)}>
               <option defaultValue>Inbox</option>
               {projects.map((project) => (
                 <option value={project.projectId}>{project.name}</option>
@@ -49,7 +49,7 @@ const AddTask = ({projects, cancel}) => {
         </div>
       </div>
     </div>
-    <div className="mt-3">
+    <div className="mt-4 mb-3">
       <button className="btn btn-primary text-light fw-bold" onClick={() => addTask()}>Add Task</button>
       <button className="btn fw-bold ms-3" onClick={() => cancel(false)}>Cancel</button>
     </div>
